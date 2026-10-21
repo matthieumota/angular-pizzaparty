@@ -1,13 +1,33 @@
 <h1>Hello {{ title() }}</h1>
 
-<h2 (click)="pizza.set({ ...pizza(), name: 'toto' })">{{ pizza().name }}</h2>
-<img
-  [src]="pizza().image"
-  [alt]="pizza().name + ' - Image'"
-  (click)="firstname = 'Toto'"
->
-<input [(ngModel)]="pizza().name" placeholder="name">
-<input [value]="pizza().name" (input)="pizza.set({ ...pizza(), name: $event.target.value })">
+@if (pizza(); as selected) {
+  <h2 (click)="pizza.set({ ...selected, name: 'toto' })">{{ pizza()?.name }}</h2>
+  <img
+    [src]="selected.image"
+    [alt]="selected.name + ' - Image'"
+    (click)="firstname = 'Toto'"
+  >
+  <input [(ngModel)]="selected.name" placeholder="name">
+  <input [value]="selected.name" (input)="pizza.set({ ...selected, name: $event.target.value })">
+} @else {
+  <h2 class="text-center font-bold text-xl">Veuillez choisir une pizza</h2>
+}
+
+<ul class="grid grid-cols-4 gap-8">
+  @for (p of pizzas(); track p.id) {
+    <li
+      [class.bg-gray-300]="pizza()?.id === p.id"
+      (click)="onSelect(p)"
+      [ngClass]="{
+        'px-4 rounded-lg bg-gray-300!': pizza()?.id === p.id,
+        'bg-red-300': p.price > 11,
+      }"
+    >
+      <span>{{ p.id }}: {{ p.name }}</span>
+      <img [src]="p.image" [alt]="p.name" />
+    </li>
+  }
+</ul>
 
 {{ firstname }}
 
