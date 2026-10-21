@@ -1,17 +1,6 @@
 <h1>Hello {{ title() }}</h1>
 
-@if (pizza(); as selected) {
-  <h2 (click)="pizza.set({ ...selected, name: 'toto' })">{{ pizza()?.name }}</h2>
-  <img
-    [src]="selected.image"
-    [alt]="selected.name + ' - Image'"
-    (click)="firstname = 'Toto'"
-  >
-  <input [(ngModel)]="selected.name" placeholder="name">
-  <input [value]="selected.name" (input)="pizza.set({ ...selected, name: $event.target.value })">
-} @else {
-  <h2 class="text-center font-bold text-xl">Veuillez choisir une pizza</h2>
-}
+<app-pizza-selected [default]="pizza()" />
 
 <ul class="grid grid-cols-4 gap-8">
   @for (p of pizzas(); track p.id) {

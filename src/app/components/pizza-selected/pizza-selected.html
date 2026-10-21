@@ -1,0 +1,12 @@
+@if (pizza(); as selected) {
+  <h2 (click)="pizza.set({ ...selected, name: 'toto' })">{{ pizza()?.name }}</h2>
+  <img
+    [src]="selected.image"
+    [alt]="selected.name + ' - Image'"
+    (click)="firstname = 'Toto'"
+  >
+  <input [(ngModel)]="selected.name" placeholder="name">
+  <input [value]="selected.name" (input)="pizza.set({ ...selected, name: $event.target.value })">
+} @else {
+  <h2 class="text-center font-bold text-xl">Veuillez choisir une pizza</h2>
+}

@@ -3,6 +3,7 @@ import { RouterOutlet } from '@angular/router';
 import { Pizza } from './models/pizza';
 import { FormsModule } from '@angular/forms';
 import { NgClass } from '@angular/common';
+import { PizzaSelected } from './components/pizza-selected/pizza-selected';
 
 const PIZZAS: Array<Pizza> = [
   { id: 1, name: 'Reine', price: 12, image: '/assets/pizzas/reine.jpg' },
@@ -12,7 +13,7 @@ const PIZZAS: Array<Pizza> = [
 ];
 
 @Component({
-  imports: [RouterOutlet, FormsModule, NgClass],
+  imports: [RouterOutlet, FormsModule, NgClass, PizzaSelected],
   selector: 'app-root',
   styleUrl: './app.css',
   templateUrl: './app.html',
