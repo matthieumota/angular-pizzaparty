@@ -1,4 +1,4 @@
-import { Component, input, linkedSignal, signal } from '@angular/core';
+import { Component, computed, input, linkedSignal, signal } from '@angular/core';
 import { User } from '../../models/user';
 
 @Component({
@@ -14,11 +14,12 @@ export class Author {
 
   years = Array.from({ length: 101 }, (_, i) => new Date().getFullYear() - i);
 
-  birthYear() {
+  birthYear = computed(() => {
     return Number(this.author().birthday.split('-')[0]);
-  }
+  });
 
-  age() {
+  age = computed(() => {
+    console.log('COMPUTE AGE');
     const today = new Date();
     const birthday = new Date(this.author().birthday);
     let age = today.getFullYear() - birthday.getFullYear();
@@ -27,11 +28,12 @@ export class Author {
       age--;
     }
     return age;
-  }
+  });
 
-  isAdult() {
+  isAdult = computed(() => {
+    console.log('COMPUTE ADULT');
     return this.age() >= 18;
-  }
+  });
 
   onYearChange(year: string) {
     const [, month, day] = this.author().birthday.split('-');
