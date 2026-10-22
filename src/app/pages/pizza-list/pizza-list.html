@@ -1,0 +1,7 @@
+<p>pizza-list works!</p>
+
+@for (number of tableau(); track $index) {
+  <p>{{ number }}</p>
+}
+
+<button (click)="tableau.set([...tableau(), tableau().length + 1])">Add number</button>

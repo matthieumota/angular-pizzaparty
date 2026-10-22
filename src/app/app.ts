@@ -1,5 +1,5 @@
 import { Component, inject, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { RouterOutlet, RouterLinkWithHref } from '@angular/router';
 import { Pizza } from './models/pizza';
 import { FormsModule } from '@angular/forms';
 import { NgClass } from '@angular/common';
@@ -13,7 +13,7 @@ import { PizzaService } from './services/pizza-service';
 import { delay, map, repeat } from 'rxjs';
 
 @Component({
-  imports: [RouterOutlet, FormsModule, NgClass, PizzaSelected, Counter, Author, MessageForm, MessageList],
+  imports: [RouterOutlet, FormsModule, NgClass, PizzaSelected, Counter, Author, MessageForm, MessageList, RouterLinkWithHref],
   selector: 'app-root',
   styleUrl: './app.css',
   templateUrl: './app.html',
@@ -39,7 +39,7 @@ export class App {
       .pipe(
         delay(500),
         map(result => result.filter(p => p.price >= 11)),
-        repeat(3),
+        // repeat(3),
       ).subscribe(result => {
         this.pizzas.update((c) => [...c, ...result])
         console.log('complete')

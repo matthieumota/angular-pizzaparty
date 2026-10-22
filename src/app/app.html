@@ -1,5 +1,12 @@
 <h1>Hello {{ title() }}</h1>
 
+<nav>
+  <a routerLink="/">Accueil</a>
+  <a routerLink="/pizzas">Pizzas</a>
+</nav>
+
+<router-outlet />
+
 <app-pizza-selected [default]="pizza()" />
 
 <app-author [user]="user()" />
@@ -28,5 +35,3 @@
 </ul>
 
 {{ firstname }}
-
-<router-outlet />
