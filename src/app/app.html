@@ -4,6 +4,9 @@
 
 <app-author [user]="user()" />
 
+<app-message-form />
+<app-message-list />
+
 <ul class="grid grid-cols-4 gap-8">
   @for (p of pizzas(); track p.id) {
     <li

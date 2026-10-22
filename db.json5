@@ -1,8 +1,1 @@
-{
-  pizzas: [
-    { id: 1, name: 'Reine', price: 12, image: '/assets/pizzas/reine.jpg' },
-    { id: 2, name: '4 fromages', price: 13, image: '/assets/pizzas/4-fromages.jpg' },
-    { id: 3, name: 'Orientale', price: 11, image: '/assets/pizzas/orientale.jpg' },
-    { id: 4, name: 'Cannibale', price: 9, image: '/assets/pizzas/cannibale.jpg' }
-  ]
-}
+{pizzas:[{id:'1',name:'Reine',price:12,image:'/assets/pizzas/reine.jpg'},{id:'2',name:'4 fromages',price:13,image:'/assets/pizzas/4-fromages.jpg'},{id:'3',name:'Orientale',price:11,image:'/assets/pizzas/orientale.jpg'},{id:'4',name:'Cannibale',price:9,image:'/assets/pizzas/cannibale.jpg'}],messages:[{content:'adgdga',id:'XuH6FyUPchI'},{content:'adgdagd',id:'PQCphJH9iQ8'},{content:'grwg',id:'WhMOVeGr7PE'},{content:'wrgrh',id:'ZcxDGqb4GWE'},{content:'wrgrhwrh',id:'EYzEb4xNhgs'},{content:'qete',id:'U2E84HAq3-8'},{content:'geqge',id:'yIhlv9w6jW0'},{content:'geqgeqeg',id:'QRuH0lOCZZo'},{content:'gqege',id:'oytXuNx9k8M'},{content:'qegeq',id:'y8IGnPjBh_k'},{content:'qet',id:'-JtsabjC_SA'},{content:'qetqet',id:'v6ppmtj9gTc'},{content:'abd',id:'FRSjilDSeHg'},{content:'yrwyrwy',id:'0_-U4Cnn1s8'},{content:'yrrwyrwy',id:'Q4LOo5f4vHQ'},{content:'hrwhrw',id:'sfuGPKoIrbQ'},{content:'qbveqb',id:'AfeSPqT2OU8'},{content:'fadf',id:'g0LsmWo2OVU'},{content:'fadff',id:'A5KlOgFkln4'},{content:'dgagdag',id:'lIS8l1wHIHE'},{content:'ab',id:'1fwxIxvn0as'},{content:'abdd',id:'69iKEUF5Axg'},{content:'abcx',id:'-MLO3Z7mcLk'},{content:'abc',id:'Hp55Y5mDBuM'},{content:'abdf',id:'jy509k_AuvU'},{content:'fefgeq',id:'PM_E7aOl4Ho'},{content:'rwyrwy',id:'2CqJr2EuFmM'},{content:'davvda',id:'RBQPRt6amVA'}],$schema:'./node_modules/json-server/schema.json'}

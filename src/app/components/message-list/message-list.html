@@ -1,0 +1,10 @@
+<ul>
+  @for (m of messages(); track $index) {
+    <li class="flex items-center gap-4">
+      <span>{{ m.content }}</span>
+      <button (click)="delete($index)">Supprimer</button>
+    </li>
+  } @empty {
+    <li>Aucun message</li>
+  }
+</ul>

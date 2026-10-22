@@ -6,12 +6,14 @@ import { NgClass } from '@angular/common';
 import { PizzaSelected } from './components/pizza-selected/pizza-selected';
 import { Counter } from './components/counter/counter';
 import { Author } from './components/author/author';
+import { MessageForm } from './components/message-form/message-form';
+import { MessageList } from './components/message-list/message-list';
 import { User } from './models/user';
 import { PizzaService } from './services/pizza-service';
 import { delay, map, repeat } from 'rxjs';
 
 @Component({
-  imports: [RouterOutlet, FormsModule, NgClass, PizzaSelected, Counter, Author],
+  imports: [RouterOutlet, FormsModule, NgClass, PizzaSelected, Counter, Author, MessageForm, MessageList],
   selector: 'app-root',
   styleUrl: './app.css',
   templateUrl: './app.html',
