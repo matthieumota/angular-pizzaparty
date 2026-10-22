@@ -1,9 +1,10 @@
 import { Component, input, linkedSignal } from '@angular/core';
 import { Pizza } from '../../models/pizza';
 import { FormsModule } from '@angular/forms';
+import { Counter } from '../counter/counter';
 
 @Component({
-  imports: [FormsModule],
+  imports: [FormsModule, Counter],
   selector: 'app-pizza-selected',
   styleUrl: './pizza-selected.css',
   templateUrl: './pizza-selected.html',

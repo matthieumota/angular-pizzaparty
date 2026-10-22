@@ -40,4 +40,15 @@ export class App {
     // on change la valeur du signal avec une référence
     // this.pizza.set(pizza);
   }
+
+  updateQuantity(qty: number, pizza: Pizza) {
+    // alert(qty);
+    // pizza.quantity = qty;
+    // Permet de modifier la quantité de la pizza sélectionné
+    this.pizza.set({ ...pizza, quantity: qty });
+    // Permet de modifier un objet dans un tableau
+    this.pizzas.update(pizzas =>
+      pizzas.map(p => p.id === pizza.id ? { ...p, quantity: qty } : p)
+    );
+  }
 }

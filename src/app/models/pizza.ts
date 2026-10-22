@@ -3,6 +3,7 @@ export class Pizza {
   name: string;
   price: number;
   image?: string;
+  quantity?: number = 0;
 
   constructor(id: number, name: string, price: number, image?: string) {
     this.id = id;
