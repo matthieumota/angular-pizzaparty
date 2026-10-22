@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { Pizza } from './models/pizza';
 import { FormsModule } from '@angular/forms';
@@ -7,13 +7,7 @@ import { PizzaSelected } from './components/pizza-selected/pizza-selected';
 import { Counter } from './components/counter/counter';
 import { Author } from './components/author/author';
 import { User } from './models/user';
-
-const PIZZAS: Array<Pizza> = [
-  { id: 1, name: 'Reine', price: 12, image: '/assets/pizzas/reine.jpg' },
-  { id: 2, name: '4 fromages', price: 13, image: '/assets/pizzas/4-fromages.jpg' },
-  { id: 3, name: 'Orientale', price: 11, image: '/assets/pizzas/orientale.jpg' },
-  { id: 4, name: 'Cannibale', price: 9, image: '/assets/pizzas/cannibale.jpg' }
-];
+import { PizzaService } from './services/pizza-service';
 
 @Component({
   imports: [RouterOutlet, FormsModule, NgClass, PizzaSelected, Counter, Author],
@@ -29,9 +23,22 @@ export class App {
     undefined
     // new Pizza(1, 'Reine', 12, '/assets/pizzas/reine.jpg')
   );
-  protected readonly pizzas = signal(PIZZAS);
+  protected readonly pizzaService = inject(PizzaService);
+  protected readonly pizzas = signal<Pizza[]>([]);
   protected readonly user = signal(new User('Matthieu', 'Mota', '1991-11-23', 'https://i.pravatar.cc/150?u=matthieu'));
   firstname = 'Matthieu';
+
+  ngOnInit() {
+    // this.pizzas.set(await this.pizzaService.getPizzas());
+    console.log('before');
+
+    this.pizzaService.getPizzas().then(result => {
+      this.pizzas.set(result)
+      console.log('complete')
+    });
+
+    console.log('pending');
+  }
 
   onSelect(pizza: Pizza) {
     console.log(pizza);
