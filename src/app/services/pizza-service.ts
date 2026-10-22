@@ -1,5 +1,7 @@
-import { Service } from '@angular/core';
+import { inject, Service } from '@angular/core';
 import { Pizza } from '../models/pizza';
+import { HttpClient } from '@angular/common/http';
+import { lastValueFrom, map } from 'rxjs';
 
 const PIZZAS: Array<Pizza> = [
   { id: 1, name: 'Reine', price: 12, image: '/assets/pizzas/reine.jpg' },
@@ -10,11 +12,25 @@ const PIZZAS: Array<Pizza> = [
 
 @Service()
 export class PizzaService {
-  getPizzas(): Promise<Pizza[]> {
+  protected http = inject(HttpClient);
+
+  getPizzasOld(): Promise<Pizza[]> {
     // return Promise.resolve(PIZZAS);
-    return new Promise(resolve => {
-      setTimeout(() => resolve(PIZZAS), 2000);
-    });
+    //return new Promise(resolve => {
+    //  setTimeout(() => resolve(PIZZAS), 2000);
+    //});
     // return fetch('https://jsonplaceholder.typicode.com/posts').then(response => response.json())
+
+    return lastValueFrom(this.http.get<Pizza[]>('http://localhost:3000/pizzas'));
+  }
+
+  getPizzas() {
+    return this.http.get<Pizza[]>('http://localhost:3000/pizzas');
+  }
+
+  getPizzasExpensive() {
+    return this.getPizzas().pipe(
+      map(result => result.filter(p => p.price >= 11)),
+    );
   }
 }

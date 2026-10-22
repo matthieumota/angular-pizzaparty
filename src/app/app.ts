@@ -8,6 +8,7 @@ import { Counter } from './components/counter/counter';
 import { Author } from './components/author/author';
 import { User } from './models/user';
 import { PizzaService } from './services/pizza-service';
+import { delay, map, repeat } from 'rxjs';
 
 @Component({
   imports: [RouterOutlet, FormsModule, NgClass, PizzaSelected, Counter, Author],
@@ -32,10 +33,15 @@ export class App {
     // this.pizzas.set(await this.pizzaService.getPizzas());
     console.log('before');
 
-    this.pizzaService.getPizzas().then(result => {
-      this.pizzas.set(result)
-      console.log('complete')
-    });
+    this.pizzaService.getPizzas()
+      .pipe(
+        delay(500),
+        map(result => result.filter(p => p.price >= 11)),
+        repeat(3),
+      ).subscribe(result => {
+        this.pizzas.update((c) => [...c, ...result])
+        console.log('complete')
+      });
 
     console.log('pending');
   }
