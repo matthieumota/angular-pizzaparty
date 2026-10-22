@@ -2,6 +2,8 @@
 
 <app-pizza-selected [default]="pizza()" />
 
+<app-author [user]="user()" />
+
 <ul class="grid grid-cols-4 gap-8">
   @for (p of pizzas(); track p.id) {
     <li
@@ -14,6 +16,7 @@
     >
       <span>{{ p.id }}: {{ p.name }}</span>
       <img [src]="p.image" [alt]="p.name" />
+      <app-counter />
     </li>
   }
 </ul>

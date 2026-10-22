@@ -1,0 +1,7 @@
+<div class="flex items-center gap-4">
+  <button (click)="$event.stopPropagation(); decrement()" [disabled]="count() <= 0">-</button>
+  <span>{{ count() }}</span>
+  @if (count() < 10) {
+    <button (click)="$event.stopPropagation(); increment()">+</button>
+  }
+</div>

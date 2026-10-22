@@ -1,0 +1,22 @@
+<div class="flex items-center gap-4">
+  @if (showAvatar() && author().avatar) {
+    <img class="w-16 rounded-full" [src]="author().avatar" [alt]="author().firstname + ' ' + author().lastname">
+  }
+  <div>
+    <h2 class="font-bold">{{ author().firstname }} {{ author().lastname }}</h2>
+    <p>Né le {{ author().birthday }} ({{ age() }} ans)</p>
+    @if (isAdult()) {
+      <p>Vous êtes majeur</p>
+    }
+  </div>
+</div>
+
+<button (click)="showAvatar.set(!showAvatar())">
+  {{ showAvatar() ? 'Masquer' : 'Afficher' }} l'avatar
+</button>
+
+<select [value]="birthYear()" (input)="onYearChange($any($event.target).value)">
+  @for (year of years; track year) {
+    <option [value]="year" [selected]="year === birthYear()">{{ year }}</option>
+  }
+</select>
