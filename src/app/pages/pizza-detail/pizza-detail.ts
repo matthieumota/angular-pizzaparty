@@ -15,7 +15,7 @@ export class PizzaDetail implements OnInit {
   activatedRoute = inject(ActivatedRoute);
   observable$ = this.activatedRoute.paramMap.pipe(
     map(params => params.get('id')),
-    switchMap(id => this.pizzaService.getPizza(Number(id)))
+    switchMap(id => this.pizzaService.getPizza(String(id)))
   );
   pizzaService = inject(PizzaService);
   pizza = signal<Pizza | null>(null);

@@ -2,6 +2,7 @@ import { inject, Service } from '@angular/core';
 import { Pizza } from '../models/pizza';
 import { HttpClient } from '@angular/common/http';
 import { lastValueFrom, map } from 'rxjs';
+import { PizzaDraft } from '../pages/pizza-form/pizza-form';
 
 const PIZZAS: Array<Pizza> = [
   { id: 1, name: 'Reine', price: 12, image: '/assets/pizzas/reine.jpg' },
@@ -34,7 +35,15 @@ export class PizzaService {
     );
   }
 
-  getPizza(id: number) {
+  getPizza(id: number | string) {
     return this.http.get<Pizza>(`http://localhost:3000/pizzas/${id}`);
+  }
+
+  createPizza(pizza: PizzaDraft) {
+    return this.http.post<Pizza>('http://localhost:3000/pizzas', pizza);
+  }
+
+  updatePizza(id: number, pizza: PizzaDraft) {
+    return this.http.patch<Pizza>(`http://localhost:3000/pizzas/${id}`, pizza);
   }
 }

@@ -1,6 +1,6 @@
-import { Component, computed, inject, signal } from '@angular/core';
+import { Component, computed, inject, linkedSignal, signal } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Pizza } from '../../models/pizza';
 import { PizzaService } from '../../services/pizza-service';
 import { filter, switchMap } from 'rxjs';
@@ -22,28 +22,39 @@ export class PizzaForm {
   // pizza = toSignal(
   //   this.activatedRoute.paramMap.pipe(
   //     filter(params => params.has('id')),
-  //     switchMap(params => this.pizzaService.getPizza(Number(params.get('id'))))
+  //     switchMap(params => this.pizzaService.getPizza(String(params.get('id'))))
   //   )
   // );
 
   ngOnInit(): void {
     this.activatedRoute.paramMap.pipe(
       filter(params => params.has('id')),
-      switchMap(params => this.pizzaService.getPizza(Number(params.get('id'))))
+      switchMap(params => this.pizzaService.getPizza(String(params.get('id'))))
     ).subscribe(pizza => {
       this.pizza.set(pizza)
     });
   }
 
-  pizzaDraft = signal<PizzaDraft>({
-    name: '',
-    price: '',
-  });
+  pizzaDraft = linkedSignal<PizzaDraft>(() => ({
+    name: this.pizza()?.name ?? '',
+    price: this.pizza()?.price.toString() ?? '',
+    image: this.pizza()?.image ?? '/assets/pizzas/reine.jpg',
+  }));
+
+  router = inject(Router);
 
   save(element: NgForm) {
     console.log(element.value, element.valid)
     console.log(element.controls['price'].value * 1.2)
     console.log(this.pizzaDraft());
+
+    if (this.editMode()) {
+      this.pizzaService.updatePizza(this.pizza()!.id, this.pizzaDraft())
+        .subscribe(pizza => this.router.navigate(['/pizzas', pizza.id]))
+    } else {
+      this.pizzaService.createPizza(this.pizzaDraft())
+        .subscribe(pizza => this.router.navigate(['/pizzas', pizza.id]))
+    }
   }
 }
 
