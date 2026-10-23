@@ -1,5 +1,9 @@
 <app-pizza-selected [default]="pizza()" />
 
+<a routerLink="/pizza/new" class="bg-amber-300 px-2 py-1 rounded inline-flex">
+  Créer une pizza
+</a>
+
 <ul class="grid grid-cols-4 gap-8">
   @for (p of pizzas(); track p.id) {
     <li

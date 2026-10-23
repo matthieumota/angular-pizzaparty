@@ -14,5 +14,13 @@ export const routes: Routes = [
   {
     path: 'pizzas/:id',
     loadComponent: () => import('./pages/pizza-detail/pizza-detail').then(m => m.PizzaDetail)
+  },
+  {
+    path: 'pizza/new',
+    loadComponent: () => import('./pages/pizza-form/pizza-form').then(m => m.PizzaForm)
+  },
+  {
+    path: 'pizza/:id/edit',
+    loadComponent: () => import('./pages/pizza-form/pizza-form').then(m => m.PizzaForm)
   }
 ];
