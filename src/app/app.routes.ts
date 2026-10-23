@@ -10,5 +10,9 @@ export const routes: Routes = [
   {
     path: 'pizzas',
     loadComponent: () => import('./pages/pizza-list/pizza-list').then(m => m.PizzaList)
+  },
+  {
+    path: 'pizzas/:id',
+    loadComponent: () => import('./pages/pizza-detail/pizza-detail').then(m => m.PizzaDetail)
   }
 ];

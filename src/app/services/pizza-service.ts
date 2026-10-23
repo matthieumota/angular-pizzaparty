@@ -33,4 +33,8 @@ export class PizzaService {
       map(result => result.filter(p => p.price >= 11)),
     );
   }
+
+  getPizza(id: number) {
+    return this.http.get<Pizza>(`http://localhost:3000/pizzas/${id}`);
+  }
 }

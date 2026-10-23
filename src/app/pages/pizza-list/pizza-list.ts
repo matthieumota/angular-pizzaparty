@@ -5,9 +5,10 @@ import { Counter } from '../../components/counter/counter';
 import { Pizza } from '../../models/pizza';
 import { PizzaService } from '../../services/pizza-service';
 import { delay, map } from 'rxjs';
+import { RouterLink } from '@angular/router';
 
 @Component({
-  imports: [PizzaSelected, NgClass, Counter],
+  imports: [PizzaSelected, NgClass, Counter, RouterLink],
   selector: 'app-pizza-list',
   styleUrl: './pizza-list.css',
   templateUrl: './pizza-list.html',
@@ -28,7 +29,7 @@ export class PizzaList {
 
     this.pizzaService.getPizzas()
       .pipe(
-        delay(500),
+        delay(50),
         map(result => result.filter(p => p.price >= 11)),
         // repeat(3),
       ).subscribe(result => {

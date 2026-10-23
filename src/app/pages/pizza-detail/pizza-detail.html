@@ -1,0 +1,13 @@
+@if (pizza(); as pizza) {
+  <div class="flex gap-4">
+    <img [src]="pizza.image">
+    <div>
+      <h1 class="text-2xl">{{ pizza.name | uppercase }}</h1>
+      <p>{{ pizza.price | currency:'EUR' }}</p>
+    </div>
+  </div>
+
+  {{ pizza | json }}
+
+  <a routerLink="/pizzas/2">2</a>
+}

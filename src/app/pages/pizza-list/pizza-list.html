@@ -7,7 +7,7 @@
       (click)="onSelect(p)"
       [ngClass]="{
         'px-4 rounded-lg bg-gray-300!': pizza()?.id === p.id,
-        'bg-red-300': p.price > 11,
+        'bg-red-300---': p.price > 11,
       }"
     >
       <span>{{ p.id }}: {{ p.name }}</span>
@@ -16,6 +16,12 @@
       <p>Vous avez {{ p.quantity }}</p>
       }
       <app-counter (changed)="updateQuantity($event, p)" />
+      <a
+        [routerLink]="['/pizzas', p.id]"
+        class="bg-amber-300 px-2 py-1 rounded inline-flex"
+      >
+        Voir
+      </a>
     </li>
   }
 </ul>
