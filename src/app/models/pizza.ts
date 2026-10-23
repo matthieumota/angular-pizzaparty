@@ -11,4 +11,8 @@ export class Pizza {
     this.price = price;
     this.image = image;
   }
+
+  getPrice?(): number {
+    return Math.round(this.price * 1.2 * 100) / 100;
+  }
 }

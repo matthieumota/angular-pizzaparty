@@ -29,7 +29,7 @@ export class PizzaList {
 
     this.pizzaService.getPizzas()
       .pipe(
-        delay(50),
+        delay(5000),
         map(result => result.filter(p => p.price >= 11)),
         // repeat(3),
       ).subscribe(result => {
