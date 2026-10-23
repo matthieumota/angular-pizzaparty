@@ -1,8 +1,10 @@
-<h1>Hello {{ title() }}</h1>
+<app-layout [full]="false">
+  <app-menu [logo]="title()">
+    <nav>
+      <app-nav-link routerLink="/">Accueil</app-nav-link>
+      <app-nav-link routerLink="/pizzas">Pizzas</app-nav-link>
+    </nav>
+  </app-menu>
 
-<nav>
-  <a routerLink="/">Accueil</a>
-  <a routerLink="/pizzas">Pizzas</a>
-</nav>
-
-<router-outlet />
+  <router-outlet />
+</app-layout>
