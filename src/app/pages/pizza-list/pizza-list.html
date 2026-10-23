@@ -1,7 +1,21 @@
-<p>pizza-list works!</p>
+<app-pizza-selected [default]="pizza()" />
 
-@for (number of tableau(); track $index) {
-  <p>{{ number }}</p>
-}
-
-<button (click)="tableau.set([...tableau(), tableau().length + 1])">Add number</button>
+<ul class="grid grid-cols-4 gap-8">
+  @for (p of pizzas(); track p.id) {
+    <li
+      [class.bg-gray-300]="pizza()?.id === p.id"
+      (click)="onSelect(p)"
+      [ngClass]="{
+        'px-4 rounded-lg bg-gray-300!': pizza()?.id === p.id,
+        'bg-red-300': p.price > 11,
+      }"
+    >
+      <span>{{ p.id }}: {{ p.name }}</span>
+      <img [src]="p.image" [alt]="p.name" />
+      @if (p.quantity) {
+      <p>Vous avez {{ p.quantity }}</p>
+      }
+      <app-counter (changed)="updateQuantity($event, p)" />
+    </li>
+  }
+</ul>

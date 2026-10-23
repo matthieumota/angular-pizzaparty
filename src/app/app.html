@@ -6,32 +6,3 @@
 </nav>
 
 <router-outlet />
-
-<app-pizza-selected [default]="pizza()" />
-
-<app-author [user]="user()" />
-
-<app-message-form />
-<app-message-list />
-
-<ul class="grid grid-cols-4 gap-8">
-  @for (p of pizzas(); track p.id) {
-    <li
-      [class.bg-gray-300]="pizza()?.id === p.id"
-      (click)="onSelect(p)"
-      [ngClass]="{
-        'px-4 rounded-lg bg-gray-300!': pizza()?.id === p.id,
-        'bg-red-300': p.price > 11,
-      }"
-    >
-      <span>{{ p.id }}: {{ p.name }}</span>
-      <img [src]="p.image" [alt]="p.name" />
-      @if (p.quantity) {
-      <p>Vous avez {{ p.quantity }}</p>
-      }
-      <app-counter (changed)="updateQuantity($event, p)" />
-    </li>
-  }
-</ul>
-
-{{ firstname }}
