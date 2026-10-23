@@ -3,3 +3,33 @@
 } @else {
   <h1 class="text-2xl">Créer une pizza</h1>
 }
+
+<form (ngSubmit)="save(pizzaForm)" #pizzaForm="ngForm">
+  <div>
+    @if (name.dirty && name.hasError('required')) {
+      <p class="text-red-500">Le nom est obligatoire</p>
+    }
+    @if (name.dirty && name.hasError('minlength')) {
+      <p class="text-red-500">Le nom doit faire 3 caractères minimum</p>
+    }
+    <input [(ngModel)]="pizzaDraft().name" name="name" class="border" required minlength="3" maxlength="20" #name="ngModel">
+  </div>
+  <div>
+    <input [(ngModel)]="pizzaDraft().price" type="number" name="price" class="border" required min="1" max="30" #price="ngModel">
+    @if (price.dirty && price.hasError('required')) {
+      <p class="text-red-500">Le prix est obligatoire</p>
+    }
+    @if (price.dirty && price.hasError('min')) {
+      <p class="text-red-500">Le prix doit être au moins 1</p>
+    }
+    @if (price.dirty && price.hasError('max')) {
+      <p class="text-red-500">Le prix doit être au maximum 30</p>
+    }
+  </div>
+  <button
+    class="bg-amber-300 px-2 py-1 rounded disabled:opacity-25"
+    [disabled]="pizzaForm.invalid"
+  >
+    Save
+  </button>
+</form>
